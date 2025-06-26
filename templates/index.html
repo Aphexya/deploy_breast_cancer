@@ -1,101 +1,549 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Prediksi Kanker Payudara</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🩺 Prediksi Kanker Payudara - Wisconsin Diagnostic</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f6fa;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
-        h2 {
-            text-align: center;
-            margin-top: 30px;
-            color: #2f3542;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        .container {
-            display: flex;
-            justify-content: center; /* Pusatkan card secara horizontal */
-            margin-top: 20px;
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
         }
 
-        .card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 30px;
-            width: 400px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            background-color: #2ed573;
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
             color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #1eae60;
-        }
-
-        h3 {
             text-align: center;
-            color: #2f3542;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="white" opacity="0.1"/><circle cx="90" cy="20" r="1" fill="white" opacity="0.1"/><circle cx="30" cy="40" r="1" fill="white" opacity="0.1"/><circle cx="70" cy="60" r="1" fill="white" opacity="0.1"/><circle cx="20" cy="80" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .prefill-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .prefill-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .prefill-btn {
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prefill-btn.malignant {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        }
+
+        .prefill-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .prefill-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-group {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-group:hover {
+            transform: translateY(-5px);
+        }
+
+        .group-title {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #495057;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 10px;
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #6c757d;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .input-group input:focus + label {
+            color: #667eea;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 18px 60px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .result-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.3em;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+        }
+
+        .tooltip {
+            position: relative;
+            cursor: help;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .input-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loading {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <div class="main-container">
+        <div class="header">
+            <h1>🩺 Prediksi Kanker Payudara</h1>
+            <p>Wisconsin Diagnostic Breast Cancer Dataset - Analisis Karakteristik Sel Nukleus</p>
+        </div>
 
-    <h2>🩺 Form Prediksi Kanker Payudara</h2>
+        <div class="content">
+            <div class="prefill-section">
+                <h3>📊 Data Sampel untuk Testing</h3>
+                <div class="btn-group">
+                    <button type="button" class="prefill-btn" onclick="isiData('13.54,14.36,87.46,566.3,0.09779,0.08129,0.06664,0.04781,0.1885,0.05766,0.2699,0.7886,2.058,22.75,0.006719,0.02059,0.03078,0.01158,0.02191,0.00466,14.9,20.49,96.09,685.0,0.1326,0.1768,0.198,0.09586,0.3074,0.0875')">
+                        ✅ Sampel Benign (Jinak)
+                    </button>
+                    <button type="button" class="prefill-btn malignant" onclick="isiData('17.99,10.38,122.8,1001.0,0.1184,0.2776,0.3001,0.1471,0.2419,0.07871,1.095,0.9053,8.589,153.4,0.006399,0.04904,0.05373,0.01587,0.03003,0.006193,25.38,17.33,184.6,2019.0,0.1622,0.6656,0.7119,0.2654,0.4601,0.1189')">
+                        ⚠️ Sampel Malignant (Ganas)
+                    </button>
+                </div>
+            </div>
 
-    <div class="container">
-        <div class="card">
-            <form action="/predict" method="post">
-                {% set feature_names = [
-                    'Radius Mean', 'Texture Mean', 'Perimeter Mean', 'Area Mean', 'Smoothness Mean',
-                    'Compactness Mean', 'Concavity Mean', 'Concave Points Mean', 'Symmetry Mean', 'Fractal Dimension Mean',
-                    'Radius SE', 'Texture SE', 'Perimeter SE', 'Area SE', 'Smoothness SE',
-                    'Compactness SE', 'Concavity SE', 'Concave Points SE', 'Symmetry SE', 'Fractal Dimension SE',
-                    'Radius Worst', 'Texture Worst', 'Perimeter Worst', 'Area Worst', 'Smoothness Worst',
-                    'Compactness Worst', 'Concavity Worst', 'Concave Points Worst', 'Symmetry Worst', 'Fractal Dimension Worst'
-                ] %}
+            <form method="post" action="/predict" id="predictionForm">
+                <div class="form-grid">
+                    <!-- Mean Features -->
+                    <div class="feature-group">
+                        <div class="group-title">📏 Karakteristik Rata-rata (Mean)</div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Rata-rata jarak dari pusat ke titik perimeter">
+                                <label>Radius</label>
+                                <input type="number" step="any" name="0" placeholder="13.54">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Standar deviasi nilai gray-scale">
+                                <label>Texture</label>
+                                <input type="number" step="any" name="1" placeholder="14.36">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Keliling sel">
+                                <label>Perimeter</label>
+                                <input type="number" step="any" name="2" placeholder="87.46">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Luas area sel">
+                                <label>Area</label>
+                                <input type="number" step="any" name="3" placeholder="566.3">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Variasi lokal dalam panjang radius">
+                                <label>Smoothness</label>
+                                <input type="number" step="any" name="4" placeholder="0.09779">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Perimeter² / area - 1.0">
+                                <label>Compactness</label>
+                                <input type="number" step="any" name="5" placeholder="0.08129">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Keparahan bagian cekung kontur">
+                                <label>Concavity</label>
+                                <input type="number" step="any" name="6" placeholder="0.06664">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Jumlah bagian cekung kontur">
+                                <label>Concave Points</label>
+                                <input type="number" step="any" name="7" placeholder="0.04781">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Simetri sel">
+                                <label>Symmetry</label>
+                                <input type="number" step="any" name="8" placeholder="0.1885">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Dimensi fraktal (coastline approximation - 1)">
+                                <label>Fractal Dimension</label>
+                                <input type="number" step="any" name="9" placeholder="0.05766">
+                            </div>
+                        </div>
+                    </div>
 
-                {% for i in range(30) %}
-                    <label>{{ feature_names[i] }}:</label>
-                    <input type="text" name="feature{{ i+1 }}">
-                {% endfor %}
+                    <!-- Standard Error Features -->
+                    <div class="feature-group">
+                        <div class="group-title">📊 Standar Error (SE)</div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Standar error radius">
+                                <label>Radius SE</label>
+                                <input type="number" step="any" name="10" placeholder="0.2699">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Standar error texture">
+                                <label>Texture SE</label>
+                                <input type="number" step="any" name="11" placeholder="0.7886">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Standar error perimeter">
+                                <label>Perimeter SE</label>
+                                <input type="number" step="any" name="12" placeholder="2.058">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Standar error area">
+                                <label>Area SE</label>
+                                <input type="number" step="any" name="13" placeholder="22.75">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Standar error smoothness">
+                                <label>Smoothness SE</label>
+                                <input type="number" step="any" name="14" placeholder="0.006719">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Standar error compactness">
+                                <label>Compactness SE</label>
+                                <input type="number" step="any" name="15" placeholder="0.02059">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Standar error concavity">
+                                <label>Concavity SE</label>
+                                <input type="number" step="any" name="16" placeholder="0.03078">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Standar error concave points">
+                                <label>Concave Points SE</label>
+                                <input type="number" step="any" name="17" placeholder="0.01158">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Standar error symmetry">
+                                <label>Symmetry SE</label>
+                                <input type="number" step="any" name="18" placeholder="0.02191">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Standar error fractal dimension">
+                                <label>Fractal Dimension SE</label>
+                                <input type="number" step="any" name="19" placeholder="0.00466">
+                            </div>
+                        </div>
+                    </div>
 
-                <input type="submit" value="Prediksi">
+                    <!-- Worst Features -->
+                    <div class="feature-group">
+                        <div class="group-title">⚠️ Nilai Terburuk (Worst)</div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Nilai radius terburuk">
+                                <label>Radius Worst</label>
+                                <input type="number" step="any" name="20" placeholder="14.9">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Nilai texture terburuk">
+                                <label>Texture Worst</label>
+                                <input type="number" step="any" name="21" placeholder="20.49">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Nilai perimeter terburuk">
+                                <label>Perimeter Worst</label>
+                                <input type="number" step="any" name="22" placeholder="96.09">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Nilai area terburuk">
+                                <label>Area Worst</label>
+                                <input type="number" step="any" name="23" placeholder="685.0">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Nilai smoothness terburuk">
+                                <label>Smoothness Worst</label>
+                                <input type="number" step="any" name="24" placeholder="0.1326">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Nilai compactness terburuk">
+                                <label>Compactness Worst</label>
+                                <input type="number" step="any" name="25" placeholder="0.1768">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Nilai concavity terburuk">
+                                <label>Concavity Worst</label>
+                                <input type="number" step="any" name="26" placeholder="0.198">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Nilai concave points terburuk">
+                                <label>Concave Points Worst</label>
+                                <input type="number" step="any" name="27" placeholder="0.09586">
+                            </div>
+                            <div class="input-group tooltip" data-tooltip="Nilai symmetry terburuk">
+                                <label>Symmetry Worst</label>
+                                <input type="number" step="any" name="28" placeholder="0.3074">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group tooltip" data-tooltip="Nilai fractal dimension terburuk">
+                                <label>Fractal Dimension Worst</label>
+                                <input type="number" step="any" name="29" placeholder="0.0875">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn">🔍 Analisis Prediksi</button>
+                    <div class="loading" id="loading"></div>
+                </div>
             </form>
 
-            {% if prediction_text %}
-                <h3>{{ prediction_text }}</h3>
+            {% if prediction %}
+            <div class="result-section">
+                <h3>📌 Hasil Prediksi Diagnosa</h3>
+                <p><strong>{{ prediction }}</strong></p>
+            </div>
             {% endif %}
         </div>
     </div>
 
+    <script>
+        function isiData(data) {
+            const fitur = data.split(",");
+            for (let i = 0; i < fitur.length; i++) {
+                const input = document.getElementsByName(i.toString())[0];
+                if (input) {
+                    input.value = fitur[i];
+                    // Add animation effect
+                    input.style.transform = 'scale(1.05)';
+                    input.style.borderColor = '#28a745';
+                    setTimeout(() => {
+                        input.style.transform = 'scale(1)';
+                        input.style.borderColor = '#e9ecef';
+                    }, 200);
+                }
+            }
+            
+            // Show success message
+            const notification = document.createElement('div');
+            notification.innerHTML = '✅ Data berhasil diisi!';
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #28a745, #20c997);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 10px;
+                font-weight: 600;
+                z-index: 1000;
+                animation: slideIn 0.5s ease;
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Add loading animation on form submit
+        document.getElementById('predictionForm').addEventListener('submit', function() {
+            document.getElementById('loading').style.display = 'block';
+            document.querySelector('.submit-btn').disabled = true;
+            document.querySelector('.submit-btn').innerHTML = '🔄 Menganalisis...';
+        });
+
+        // Add CSS animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 </html>

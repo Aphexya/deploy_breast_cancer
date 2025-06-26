@@ -1,20 +1,34 @@
-from flask import Flask, render_template, request
+from flask import Flask, request, render_template
 import joblib
 import numpy as np
 
 app = Flask(__name__)
-model = joblib.load('model_breast_cancer.pkl')
 
-@app.route('/')
+# Load model dan scaler
+model = joblib.load("best_model.pkl")
+scaler = joblib.load("scaler.pkl")
+
+@app.route("/")
 def home():
-    return render_template('index.html')
+    return render_template("index.html")
 
-@app.route('/predict', methods=['POST'])
+@app.route("/predict", methods=["POST"])
 def predict():
-    features = [float(request.form[f'feature{i}']) for i in range(1, 31)]
-    prediction = model.predict([features])[0]
-    result = "Malignant" if prediction == 1 else "Benign"
-    return render_template('index.html', prediction_text=f'Hasil Prediksi: {result}')
+    try:
+        # Ambil semua input dari form dan ubah ke float
+        features = [float(x) for x in request.form.values()]
+        features_array = np.array(features).reshape(1, -1)
 
-if __name__ == '__main__':
+        # Normalisasi
+        features_scaled = scaler.transform(features_array)
+
+        # Prediksi
+        prediction = model.predict(features_scaled)[0]
+        label = "Malignant (Ganas)" if prediction == 1 else "Benign (Jinak)"
+        return render_template("index.html", prediction=label)
+
+    except:
+        return render_template("index.html", prediction="❌ Input tidak valid!")
+
+if __name__ == "__main__":
     app.run(debug=True)
