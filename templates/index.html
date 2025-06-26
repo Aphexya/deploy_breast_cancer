@@ -2,897 +2,100 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediksi Kanker Payudara - Interactive</title>
+    <title>Prediksi Kanker Payudara</title>
     <style>
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f6fa;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .header {
+        h2 {
             text-align: center;
-            color: white;
-            margin-bottom: 30px;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            margin-top: 30px;
+            color: #2f3542;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .progress-bar {
-            background: rgba(255,255,255,0.2);
-            border-radius: 25px;
-            height: 8px;
-            margin-bottom: 30px;
-            overflow: hidden;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .progress-fill {
-            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
-            height: 100%;
-            width: 0%;
-            border-radius: 25px;
-            transition: width 0.5s ease;
-        }
-
-        .form-container {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            animation: fadeInUp 1s ease-out 0.6s both;
-        }
-
-        .form-sections {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .section {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            border-left: 5px solid #667eea;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .section h3 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.3rem;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            justify-content: center; /* Pusatkan card secara horizontal */
+            margin-top: 20px;
         }
 
-        .section-icon {
-            font-size: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
+        .card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 400px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+            margin-bottom: 6px;
+            font-weight: bold;
             color: #333;
-            font-size: 0.9rem;
         }
 
-        .input-container {
-            position: relative;
-        }
-
-        input[type="number"] {
+        input[type="text"] {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e1e5e9;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
-        }
-
-        input[type="number"]:focus {
-            outline: none;
-            border-color: #667eea;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-            transform: translateY(-2px);
-        }
-
-        input[type="number"]:valid {
-            border-color: #28a745;
-        }
-
-        .input-feedback {
-            font-size: 0.8rem;
-            margin-top: 5px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .input-feedback.show {
-            opacity: 1;
-        }
-
-        .input-feedback.valid {
-            color: #28a745;
-        }
-
-        .input-feedback.invalid {
-            color: #dc3545;
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #667eea;
-            border: 2px solid #667eea;
-        }
-
-        .btn-secondary:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
-        .result-container {
-            margin-top: 30px;
-            padding: 25px;
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 15px;
-            color: white;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-
-        .result-container.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .result-container h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .loading {
-            display: none;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .loading.show {
-            display: block;
-        }
-
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: help;
-            margin-left: 5px;
-            color: #667eea;
-        }
-
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
             padding: 8px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -100px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 0.8rem;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
 
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
+        input[type="submit"] {
+            width: 100%;
+            background-color: #2ed573;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
         }
 
-        @media (max-width: 768px) {
-            .form-sections {
-                grid-template-columns: 1fr;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .form-container {
-                padding: 20px;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
+        input[type="submit"]:hover {
+            background-color: #1eae60;
+        }
+
+        h3 {
+            text-align: center;
+            color: #2f3542;
         }
     </style>
 </head>
 <body>
+
+    <h2>🩺 Form Prediksi Kanker Payudara</h2>
+
     <div class="container">
-        <div class="header">
-            <h1>🩺 Prediksi Kanker Payudara</h1>
-            <p>Sistem Prediksi Interaktif dengan Machine Learning</p>
-        </div>
+        <div class="card">
+            <form action="/predict" method="post">
+                {% set feature_names = [
+                    'Radius Mean', 'Texture Mean', 'Perimeter Mean', 'Area Mean', 'Smoothness Mean',
+                    'Compactness Mean', 'Concavity Mean', 'Concave Points Mean', 'Symmetry Mean', 'Fractal Dimension Mean',
+                    'Radius SE', 'Texture SE', 'Perimeter SE', 'Area SE', 'Smoothness SE',
+                    'Compactness SE', 'Concavity SE', 'Concave Points SE', 'Symmetry SE', 'Fractal Dimension SE',
+                    'Radius Worst', 'Texture Worst', 'Perimeter Worst', 'Area Worst', 'Smoothness Worst',
+                    'Compactness Worst', 'Concavity Worst', 'Concave Points Worst', 'Symmetry Worst', 'Fractal Dimension Worst'
+                ] %}
 
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
+                {% for i in range(30) %}
+                    <label>{{ feature_names[i] }}:</label>
+                    <input type="text" name="feature{{ i+1 }}">
+                {% endfor %}
 
-        <div class="form-container">
-            <form id="predictionForm">
-                <div class="form-sections">
-                    <div class="section">
-                        <h3><span class="section-icon">📊</span>Parameter Mean</h3>
-                        <div class="form-group">
-                            <label>Radius Mean <span class="tooltip">ℹ️<span class="tooltiptext">Rata-rata jarak dari pusat ke titik pada perimeter</span></span></label>
-                            <div class="input-container">
-                                <input type="number" name="radius_mean" step="0.01" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Texture Mean <span class="tooltip">ℹ️<span class="tooltiptext">Standar deviasi nilai skala abu-abu</span></span></label>
-                            <div class="input-container">
-                                <input type="number" name="texture_mean" step="0.01" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Perimeter Mean <span class="tooltip">ℹ️<span class="tooltiptext">Keliling rata-rata sel</span></span></label>
-                            <div class="input-container">
-                                <input type="number" name="perimeter_mean" step="0.01" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Area Mean <span class="tooltip">ℹ️<span class="tooltiptext">Luas rata-rata sel</span></span></label>
-                            <div class="input-container">
-                                <input type="number" name="area_mean" step="0.01" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Smoothness Mean <span class="tooltip">ℹ️<span class="tooltiptext">Variasi lokal dalam panjang radius</span></span></label>
-                            <div class="input-container">
-                                <input type="number" name="smoothness_mean" step="0.001" min="0" max="1" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Compactness Mean <span class="tooltip">ℹ️<span class="tooltiptext">Perimeter²/area - 1.0</span></span></label>
-                            <div class="input-container">
-                                <input type="number" name="compactness_mean" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Concavity Mean <span class="tooltip">ℹ️<span class="tooltiptext">Tingkat keparahan bagian cekung kontur</span></span></label>
-                            <div class="input-container">
-                                <input type="number" name="concavity_mean" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Concave Points Mean <span class="tooltip">ℹ️<span class="tooltiptext">Jumlah bagian cekung kontur</span></span></label>
-                            <div class="input-container">
-                                <input type="number" name="concave_points_mean" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Symmetry Mean <span class="tooltip">ℹ️<span class="tooltiptext">Tingkat simetri sel</span></span></label>
-                            <div class="input-container">
-                                <input type="number" name="symmetry_mean" step="0.001" min="0" max="1" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Fractal Dimension Mean <span class="tooltip">ℹ️<span class="tooltiptext">Perkiraan coastline - 1</span></span></label>
-                            <div class="input-container">
-                                <input type="number" name="fractal_dimension_mean" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="section">
-                        <h3><span class="section-icon">📈</span>Parameter SE (Standard Error)</h3>
-                        <div class="form-group">
-                            <label>Radius SE</label>
-                            <div class="input-container">
-                                <input type="number" name="radius_se" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Texture SE</label>
-                            <div class="input-container">
-                                <input type="number" name="texture_se" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Perimeter SE</label>
-                            <div class="input-container">
-                                <input type="number" name="perimeter_se" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Area SE</label>
-                            <div class="input-container">
-                                <input type="number" name="area_se" step="0.01" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Smoothness SE</label>
-                            <div class="input-container">
-                                <input type="number" name="smoothness_se" step="0.0001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Compactness SE</label>
-                            <div class="input-container">
-                                <input type="number" name="compactness_se" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Concavity SE</label>
-                            <div class="input-container">
-                                <input type="number" name="concavity_se" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Concave Points SE</label>
-                            <div class="input-container">
-                                <input type="number" name="concave_points_se" step="0.0001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Symmetry SE</label>
-                            <div class="input-container">
-                                <input type="number" name="symmetry_se" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Fractal Dimension SE</label>
-                            <div class="input-container">
-                                <input type="number" name="fractal_dimension_se" step="0.0001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="section">
-                        <h3><span class="section-icon">🔥</span>Parameter Worst</h3>
-                        <div class="form-group">
-                            <label>Radius Worst</label>
-                            <div class="input-container">
-                                <input type="number" name="radius_worst" step="0.01" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Texture Worst</label>
-                            <div class="input-container">
-                                <input type="number" name="texture_worst" step="0.01" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Perimeter Worst</label>
-                            <div class="input-container">
-                                <input type="number" name="perimeter_worst" step="0.01" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Area Worst</label>
-                            <div class="input-container">
-                                <input type="number" name="area_worst" step="0.01" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Smoothness Worst</label>
-                            <div class="input-container">
-                                <input type="number" name="smoothness_worst" step="0.001" min="0" max="1" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Compactness Worst</label>
-                            <div class="input-container">
-                                <input type="number" name="compactness_worst" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Concavity Worst</label>
-                            <div class="input-container">
-                                <input type="number" name="concavity_worst" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Concave Points Worst</label>
-                            <div class="input-container">
-                                <input type="number" name="concave_points_worst" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Symmetry Worst</label>
-                            <div class="input-container">
-                                <input type="number" name="symmetry_worst" step="0.001" min="0" max="1" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Fractal Dimension Worst</label>
-                            <div class="input-container">
-                                <input type="number" name="fractal_dimension_worst" step="0.001" min="0" required>
-                                <div class="input-feedback"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <button type="button" class="btn btn-secondary" id="fillBenignBtn">
-                        ✅ Data Contoh Jinak
-                    </button>
-                    <button type="button" class="btn btn-secondary" id="fillMalignantBtn">
-                        ⚠️ Data Contoh Ganas
-                    </button>
-                    <button type="button" class="btn btn-secondary" id="clearBtn">
-                        🗑️ Bersihkan Form
-                    </button>
-                    <button type="submit" class="btn btn-primary" id="predictBtn">
-                        🔮 Prediksi Sekarang
-                    </button>
-                </div>
-
-                <div class="loading" id="loading">
-                    <div class="spinner"></div>
-                    <p>Memproses prediksi...</p>
-                </div>
-
-                <div class="result-container" id="resultContainer">
-                    <h3 id="resultText"></h3>
-                    <p id="resultDetails"></p>
-                </div>
+                <input type="submit" value="Prediksi">
             </form>
+
+            {% if prediction_text %}
+                <h3>{{ prediction_text }}</h3>
+            {% endif %}
         </div>
     </div>
 
-    <script>
-        class CancerPredictionForm {
-            constructor() {
-                this.form = document.getElementById('predictionForm');
-                this.inputs = this.form.querySelectorAll('input[type="number"]');
-                this.progressFill = document.getElementById('progressFill');
-                this.loading = document.getElementById('loading');
-                this.resultContainer = document.getElementById('resultContainer');
-                this.resultText = document.getElementById('resultText');
-                this.resultDetails = document.getElementById('resultDetails');
-                
-                this.init();
-            }
-
-            init() {
-                this.setupEventListeners();
-                this.updateProgress();
-            }
-
-            setupEventListeners() {
-                // Form submission
-                this.form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    this.handlePrediction();
-                });
-
-                // Input validation and progress tracking
-                this.inputs.forEach(input => {
-                    input.addEventListener('input', () => {
-                        this.validateInput(input);
-                        this.updateProgress();
-                    });
-
-                    input.addEventListener('blur', () => {
-                        this.validateInput(input);
-                    });
-                });
-
-                // Button event listeners
-                document.getElementById('fillBenignBtn').addEventListener('click', () => {
-                    this.fillBenignData();
-                });
-
-                document.getElementById('fillMalignantBtn').addEventListener('click', () => {
-                    this.fillMalignantData();
-                });
-
-                document.getElementById('clearBtn').addEventListener('click', () => {
-                    this.clearForm();
-                });
-            }
-
-            validateInput(input) {
-                const value = parseFloat(input.value);
-                const feedback = input.closest('.input-container').querySelector('.input-feedback');
-                
-                if (input.value === '') {
-                    feedback.textContent = '';
-                    feedback.classList.remove('show', 'valid', 'invalid');
-                    return;
-                }
-
-                if (isNaN(value) || value < 0) {
-                    feedback.textContent = '❌ Nilai harus berupa angka positif';
-                    feedback.classList.add('show', 'invalid');
-                    feedback.classList.remove('valid');
-                } else if (input.hasAttribute('max') && value > parseFloat(input.getAttribute('max'))) {
-                    feedback.textContent = `❌ Nilai maksimal ${input.getAttribute('max')}`;
-                    feedback.classList.add('show', 'invalid');
-                    feedback.classList.remove('valid');
-                } else {
-                    feedback.textContent = '✅ Valid';
-                    feedback.classList.add('show', 'valid');
-                    feedback.classList.remove('invalid');
-                }
-            }
-
-            updateProgress() {
-                const filledInputs = Array.from(this.inputs).filter(input => input.value.trim() !== '');
-                const progress = (filledInputs.length / this.inputs.length) * 100;
-                this.progressFill.style.width = progress + '%';
-            }
-
-            fillBenignData() {
-                // Sample data for benign (jinak) case
-                const benignData = {
-                    radius_mean: 13.54,
-                    texture_mean: 14.36,
-                    perimeter_mean: 87.46,
-                    area_mean: 566.3,
-                    smoothness_mean: 0.09779,
-                    compactness_mean: 0.08129,
-                    concavity_mean: 0.06664,
-                    concave_points_mean: 0.04781,
-                    symmetry_mean: 0.1885,
-                    fractal_dimension_mean: 0.05766,
-                    radius_se: 0.2699,
-                    texture_se: 0.7886,
-                    perimeter_se: 2.058,
-                    area_se: 23.56,
-                    smoothness_se: 0.008462,
-                    compactness_se: 0.0146,
-                    concavity_se: 0.02387,
-                    concave_points_se: 0.01315,
-                    symmetry_se: 0.0198,
-                    fractal_dimension_se: 0.0023,
-                    radius_worst: 15.11,
-                    texture_worst: 19.26,
-                    perimeter_worst: 99.7,
-                    area_worst: 711.2,
-                    smoothness_worst: 0.144,
-                    compactness_worst: 0.1773,
-                    concavity_worst: 0.239,
-                    concave_points_worst: 0.1288,
-                    symmetry_worst: 0.2977,
-                    fractal_dimension_worst: 0.07259
-                };
-
-                this.fillFormData(benignData);
-                this.showNotification('✅ Data contoh JINAK telah dimasukkan!', 'success');
-            }
-
-            fillMalignantData() {
-                // Sample data for malignant (ganas) case
-                const malignantData = {
-                    radius_mean: 17.99,
-                    texture_mean: 10.38,
-                    perimeter_mean: 122.8,
-                    area_mean: 1001.0,
-                    smoothness_mean: 0.1184,
-                    compactness_mean: 0.2776,
-                    concavity_mean: 0.3001,
-                    concave_points_mean: 0.1471,
-                    symmetry_mean: 0.2419,
-                    fractal_dimension_mean: 0.07871,
-                    radius_se: 1.095,
-                    texture_se: 0.9053,
-                    perimeter_se: 8.589,
-                    area_se: 153.4,
-                    smoothness_se: 0.006399,
-                    compactness_se: 0.04904,
-                    concavity_se: 0.05373,
-                    concave_points_se: 0.01587,
-                    symmetry_se: 0.03003,
-                    fractal_dimension_se: 0.006193,
-                    radius_worst: 25.38,
-                    texture_worst: 17.33,
-                    perimeter_worst: 184.6,
-                    area_worst: 2019.0,
-                    smoothness_worst: 0.1622,
-                    compactness_worst: 0.6656,
-                    concavity_worst: 0.7119,
-                    concave_points_worst: 0.2654,
-                    symmetry_worst: 0.4601,
-                    fractal_dimension_worst: 0.1189
-                };
-
-                this.fillFormData(malignantData);
-                this.showNotification('⚠️ Data contoh GANAS telah dimasukkan!', 'warning');
-            }
-
-            fillFormData(data) {
-                Object.keys(data).forEach(key => {
-                    const input = this.form.querySelector(`input[name="${key}"]`);
-                    if (input) {
-                        input.value = data[key];
-                        this.validateInput(input);
-                    }
-                });
-                this.updateProgress();
-            }
-
-            clearForm() {
-                this.inputs.forEach(input => {
-                    input.value = '';
-                    const feedback = input.closest('.input-container').querySelector('.input-feedback');
-                    feedback.textContent = '';
-                    feedback.classList.remove('show', 'valid', 'invalid');
-                });
-                
-                this.updateProgress();
-                this.resultContainer.classList.remove('show');
-            showNotification(message, type) {
-                // Create notification element
-                const notification = document.createElement('div');
-                notification.style.cssText = `
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    padding: 15px 20px;
-                    border-radius: 10px;
-                    color: white;
-                    font-weight: 600;
-                    z-index: 1000;
-                    transform: translateX(400px);
-                    transition: transform 0.3s ease;
-                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-                `;
-
-                // Set background color based on type
-                switch(type) {
-                    case 'success':
-                        notification.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
-                        break;
-                    case 'warning':
-                        notification.style.background = 'linear-gradient(135deg, #ffc107, #fd7e14)';
-                        break;
-                    case 'error':
-                        notification.style.background = 'linear-gradient(135deg, #dc3545, #e83e8c)';
-                        break;
-                    default:
-                        notification.style.background = 'linear-gradient(135deg, #007bff, #6f42c1)';
-                }
-
-                notification.textContent = message;
-                document.body.appendChild(notification);
-
-                // Animate in
-                setTimeout(() => {
-                    notification.style.transform = 'translateX(0)';
-                }, 100);
-
-                // Remove after 3 seconds
-                setTimeout(() => {
-                    notification.style.transform = 'translateX(400px)';
-                    setTimeout(() => {
-                        document.body.removeChild(notification);
-                    }, 300);
-                }, 3000);
-            }
-
-            async handlePrediction() {
-                // Validate all inputs
-                const isValid = this.validateAllInputs();
-                if (!isValid) {
-                    this.showNotification('❌ Harap isi semua field dengan benar!', 'error');
-                    return;
-                }
-
-                // Show loading
-                this.loading.classList.add('show');
-                this.resultContainer.classList.remove('show');
-                
-                // Simulate API call delay
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                // Get form data
-                const formData = this.getFormData();
-                
-                // Simulate prediction (in real app, this would be an API call)
-                const prediction = this.simulatePrediction(formData);
-                
-                // Hide loading and show results
-                this.loading.classList.remove('show');
-                this.showResults(prediction);
-            }
-
-            validateAllInputs() {
-                let isValid = true;
-                this.inputs.forEach(input => {
-                    if (!input.value.trim() || parseFloat(input.value) < 0) {
-                        isValid = false;
-                        this.validateInput(input);
-                    }
-                });
-                return isValid;
-            }
-
-            getFormData() {
-                const data = {};
-                this.inputs.forEach(input => {
-                    data[input.name] = parseFloat(input.value);
-                });
-                return data;
-            }
-
-            simulatePrediction(data) {
-                // Simple simulation based on some parameters
-                // In real application, this would call your ML model API
-                const riskScore = (
-                    data.radius_mean * 0.1 +
-                    data.texture_mean * 0.05 +
-                    data.perimeter_mean * 0.02 +
-                    data.area_mean * 0.001 +
-                    data.concavity_mean * 10 +
-                    data.concave_points_mean * 20
-                ) / 6;
-
-                const isMalignant = riskScore > 2.5;
-                const confidence = Math.min(Math.max(Math.random() * 0.3 + 0.7, 0.7), 0.99);
-
-                return {
-                    prediction: isMalignant ? 'Malignant' : 'Benign',
-                    confidence: confidence,
-                    riskScore: riskScore
-                };
-            }
-
-            showResults(prediction) {
-                const isMalignant = prediction.prediction === 'Malignant';
-                const confidencePercent = (prediction.confidence * 100).toFixed(1);
-                
-                this.resultText.textContent = isMalignant 
-                    ? '⚠️ Prediksi: Malignant (Ganas)'
-                    : '✅ Prediksi: Benign (Jinak)';
-                
-                this.
+</body>
+</html>
